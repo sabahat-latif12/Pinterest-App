@@ -2,6 +2,7 @@ const { Model, DataTypes } = require("sequelize");
 const sequelize = require("../../bin/dbConfig");
 const { v4: uuid } = require("uuid");
 const { hash } = require("bcryptjs");
+const users = require("../definitions/users");
 
 class pins extends Model {}
 
@@ -21,6 +22,17 @@ pins.init(
     },
     imageUrl: {
       type: DataTypes.STRING,
+    },
+    userId: {
+      type: DataTypes.STRING(60),
+
+      allowNull: false,
+      unique: false,
+
+      references: {
+        model: users,
+        key: "userId",
+      },
     },
   },
   {

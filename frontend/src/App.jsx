@@ -1,35 +1,49 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
-import './App.css'
+import { BrowserRouter, Routes, Route } from "react-router-dom";
+import Home from "./Pages/Home";
+import Login from "./Pages/Login";
+import Register from "./Pages/Register";
+import { UserData } from "./Context/UserContext";
+import { Loading } from "./Components/Loading";
+import Navbar from "./Components/NavBar";
+import PinPage from "./Pages/PinPage";
+import Create from "./Pages/Create";
+import Account from "./Pages/Account";
+import UserProfile from "./Pages/UserProfile";
 
-function App() {
-  const [count, setCount] = useState(0)
-
+const App = () => {
+  const { loading, isAuth, user } = UserData();
   return (
     <>
-      <div>
-        <a href="https://vitejs.dev" target="_blank">
-          <img src={viteLogo} className="logo" alt="Vite logo" />
-        </a>
-        <a href="https://react.dev" target="_blank">
-          <img src={reactLogo} className="logo react" alt="React logo" />
-        </a>
-      </div>
-      <h1>Vite + React</h1>
-      <div className="card">
-        <button onClick={() => setCount((count) => count + 1)}>
-          count is {count}
-        </button>
-        <p>
-          Edit <code>src/App.jsx</code> and save to test HMR
-        </p>
-      </div>
-      <p className="read-the-docs">
-        Click on the Vite and React logos to learn more
-      </p>
+      {loading ? (
+        <Loading />
+      ) : (
+        <BrowserRouter>
+          {isAuth && <Navbar user={user} />}
+          <Routes>
+            <Route path="/" element={isAuth ? <Home /> : <Login />} />
+            <Route
+              path="/account"
+              element={isAuth ? <Account user={user} /> : <Login />}
+            />
+            <Route
+              path="/user/:id"
+              element={isAuth ? <UserProfile user={user} /> : <Login />}
+            />
+            <Route path="/create" element={isAuth ? <Create /> : <Login />} />
+            <Route
+              path="/pin/:id"
+              element={isAuth ? <PinPage user={user} /> : <Login />}
+            />
+            <Route path="/login" element={isAuth ? <Home /> : <Login />} />
+            <Route
+              path="/register"
+              element={isAuth ? <Home /> : <Register />}
+            />
+          </Routes>
+        </BrowserRouter>
+      )}
     </>
-  )
-}
+  );
+};
 
-export default App
+export default App;

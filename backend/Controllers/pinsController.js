@@ -1,8 +1,7 @@
 const Pins = require("../Models/definitions/pins");
-const Users = require("../models/definitions/users");
+const Users = require("../Models/definitions/users");
 const { v4: uuid } = require("uuid");
-//const cloudinary = require("cloudinary").v2;
-const cloudinary = require("../bin/cloudinaryConfig");
+
 const { response } = require("express");
 module.exports = {
   // Create a new pin
@@ -13,6 +12,7 @@ module.exports = {
         title: req.body.title,
         description: req.body.description,
         imageUrl: req.file.path, // Store the path to the uploaded image
+        userId: req.user.userId,
       });
       res.status(201).json(pin);
     } catch (err) {
