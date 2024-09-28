@@ -12,7 +12,7 @@ export const UserProvider = ({ children }) => {
   async function loginUser(email, password, navigate) {
     setBtnLoading(false);
     try {
-      const { data } = await axios.post("/usersRouter/login", {
+      const { data } = await axios.post("localhost:5432/usersRouter/login", {
         email,
         password,
       });
