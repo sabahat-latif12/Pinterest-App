@@ -13,7 +13,7 @@ export const UserProvider = ({ children }) => {
   async function loginUser(email, password, navigate) {
     setBtnLoading(true); // Fixed this to true since it starts the loading process
     try {
-      const { data } = await axios.post("/usersRouter/login", {
+      const { data } = await axios.post("localhost:5000/usersRouter/login", {
         email,
         password,
       });
@@ -33,7 +33,7 @@ export const UserProvider = ({ children }) => {
     setBtnLoading(true); // Start loading indicator
     try {
       const { data } = await axios.post(
-        "http://localhost:5432/usersRouter/register",
+        "http://localhost:5000/usersRouter/register",
         { name, email, password }
       );
       toast.success(data.message);
