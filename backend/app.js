@@ -5,18 +5,19 @@ var cookieParser = require("cookie-parser");
 var logger = require("morgan");
 var usersRouter = require("./Routers/userRouter");
 var pinsRouters = require("./Routers/pinsRouter");
+var cors = require("cors");
 //var { cloudinary,v2 } = require("cloudinary");
 
 var app = express();
-// cloudinary.v2.config({
-//     cloud_name: process.CLOUD_NAME,
-//   api_key: process.env.CLOUD_API,
-//   api_secret: process.env.CLOUD_SEC_API,
-// });
-// view engine setup
-// app.set("views", path.join(__dirname, "views"));
-app.set("view engine", "jade");
+app.use(
+  cors({
+    origin: "http://localhost:5173", // Allow requests from this origin
+    methods: "GET,HEAD,PUT,PATCH,POST,DELETE", // Allowed methods
+    credentials: true, // Allow credentials
+  })
+);
 
+app.set("view engine", "jade");
 app.use(logger("dev"));
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
@@ -25,10 +26,9 @@ app.use(cookieParser());
 
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
-app.use('/uploads' , express.static('uploads'))
+app.use("/uploads", express.static("uploads"));
 app.use("/usersRouter", usersRouter);
 app.use("/pinRoutes", pinsRouters);
-
 
 // catch 404 and forward to error handler
 app.use(function (req, res, next) {

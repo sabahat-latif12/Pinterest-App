@@ -53,7 +53,7 @@ module.exports = {
       const user = isUser.response.dataValues;
       delete user.password;
       const token = sign(user, process.env.JWT_SEC, {
-        expiresIn: "5m",
+        expiresIn: "5d",
       });
       res.cookie("auth", token); //generating cookie
       return responseHandler({ response: token }, res);

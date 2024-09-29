@@ -3,10 +3,10 @@ const Joi = require("joi");
 module.exports = {
   createValid: async (req, res, next) => {
     const CreateUser = Joi.object({
-      username: Joi.string().min(3).max(34).required(),
+      username: Joi.string().min(3).max(34),
       password: Joi.string().min(6).max(18).required(),
-      firstName: Joi.string().min(3).max(34).required(),
-      lastName: Joi.string().min(3).max(34).required(),
+      firstName: Joi.string().min(3).max(34),
+      lastName: Joi.string().min(3).max(34),
       email: Joi.string().email().required(),
     });
 

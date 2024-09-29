@@ -13,7 +13,9 @@ export const PinProvider = ({ children }) => {
   // Fetch all pins
   async function fetchPins() {
     try {
-      const { data } = await axios.get("/pinRoutes/get-User-Pins");
+      const { data } = await axios.get(
+        "http://localhost:5000/pinRoutes/get-User-Pins"
+      );
       console.log("Fetched pins:", data); // Log the data to inspect it
       setPins(data); // Ensure this is an array
     } catch (error) {
@@ -58,9 +60,10 @@ export const PinProvider = ({ children }) => {
     navigate
   ) {
     try {
+      const localStorage = localStorage.getItem("token");
       const { data } = await axios.post(
         "http://localhost:5000/pinRoutes/post",
-        formData
+        { formData, localStorage }
       );
       toast.success(data.message);
       setFile([]);

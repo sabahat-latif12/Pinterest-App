@@ -13,15 +13,20 @@ export const UserProvider = ({ children }) => {
   async function loginUser(email, password, navigate) {
     setBtnLoading(true); // Fixed this to true since it starts the loading process
     try {
-      const { data } = await axios.post("localhost:5000/usersRouter/login", {
-        email,
-        password,
-      });
+      const { data } = await axios.post(
+        "http://localhost:5000/usersRouter/login",
+        {
+          email,
+          password,
+        }
+      );
+      console.log(data.response);
+      localStorage.setItem("token", data.response);
       toast.success(data.message);
       setUser(data.user);
       setIsAuth(true);
       setBtnLoading(false);
-      navigate("/"); // Redirect to home on successful login
+      navigate("/home"); // Redirect to home on successful login
     } catch (error) {
       toast.error(error.response?.data?.message || "Login failed");
       setBtnLoading(false);
@@ -40,7 +45,7 @@ export const UserProvider = ({ children }) => {
       setUser(data.user); // Set the registered user data
       setIsAuth(true); // Set authentication state to true
       setBtnLoading(false);
-      navigate("/"); // Redirect to home or login page after registration
+      navigate("/home"); // Redirect to home or login page after registration
     } catch (error) {
       toast.error(error.response?.data?.message || "Registration failed");
       setBtnLoading(false);

@@ -9,7 +9,7 @@ const Navbar = ({ user }) => {
           <Link to="/" className="flex items-center mr-5">
             <img
               src="https://upload.wikimedia.org/wikipedia/commons/thumb/0/08/Pinterest-logo.png/600px-Pinterest-logo.png"
-              alt=""
+              alt="Pinterest Logo"
               className="h-6 md:mr-2"
             />
             <span className="text-red-600 text-xl font-bold">Pinterest</span>
@@ -22,12 +22,19 @@ const Navbar = ({ user }) => {
             <Link to="/create" className="text-gray-700 hover:text-gray-900">
               Create
             </Link>
-            <Link
-              to="/account"
-              className="w-8 h-8 rounded-full bg-gray-300 flex items-center justify-center text-xl text-gray-700"
-            >
-              {user.name.slice(0, 1)}
-            </Link>
+
+            {user ? (
+              <Link
+                to="/account"
+                className="w-8 h-8 rounded-full bg-gray-300 flex items-center justify-center text-xl text-gray-700"
+              >
+                {user.name.slice(0, 1)}
+              </Link>
+            ) : (
+              <Link to="/login" className="text-gray-700 hover:text-gray-900">
+                Login
+              </Link>
+            )}
           </div>
         </div>
       </div>

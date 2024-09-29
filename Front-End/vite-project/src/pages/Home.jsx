@@ -1,20 +1,37 @@
 import React from "react";
 import PinCard from "../components/pinCard";
+//import {Loading,LoadingAnimation} from "../components/Loading"; // Import Loading component
+import Navbar from "../components/Navbar";
 import { PinData } from "../context/pinContext";
 
-const Home = () => {
-  const { pins } = PinData();
+const Home = ({ user }) => {
+  const { pins, loading } = PinData(); // Fetch both pins and loading state
 
-  // Check if pins is an array
+  // Render loading state with the Loading component
+  if (loading) {
+    return (
+      <>
+        <Navbar user={user} />
+        <Loading /> {/* Show loading spinner while data is being fetched */}
+      </>
+    );
+  }
+
   if (!Array.isArray(pins)) {
     console.error("Expected pins to be an array, but got:", pins);
-    return <p>Loading pins...</p>; // Fallback message
+    return (
+      <>
+        <Navbar user={user} />
+        <p>Loading pins...</p>
+      </>
+    );
   }
 
   return (
     <div>
-      <h1>Home</h1>
-      <div className="pin-container">
+      <Navbar user={user} /> {/* Render Navbar at the top */}
+      <h1 className="text-center text-2xl font-bold mt-6">Home</h1>
+      <div className="pin-container grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 p-4">
         {pins.length > 0 ? (
           pins.map((pin) => <PinCard key={pin._id} pin={pin} />)
         ) : (

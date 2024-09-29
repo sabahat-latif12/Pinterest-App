@@ -14,6 +14,7 @@ const Create = () => {
   const [filePrev, setFilePrev] = useState("");
   const [title, setTitle] = useState("");
   const [pin, setPin] = useState("");
+  const [id, setId] = useState("");
   const { addPin } = PinData();
 
   const changeFileHandler = (e) => {
@@ -34,12 +35,12 @@ const Create = () => {
     e.preventDefault();
 
     const formData = new FormData();
-
+    formData.append("id", id);
     formData.append("title", title);
     formData.append("pin", pin);
     formData.append("file", file);
 
-    addPin(formData, setFilePrev, setFile, setTitle, setPin, navigate);
+    addPin(formData, setFilePrev, setFile, setTitle, setPin, setId, navigate);
   };
   return (
     <div>
@@ -77,6 +78,22 @@ const Create = () => {
             >
               <div className="mb-4">
                 <label
+                  htmlFor="id"
+                  className="block text-sm font-medium text-gray-700"
+                >
+                  ID
+                </label>
+                <input
+                  type="text"
+                  id="id"
+                  className="common-input"
+                  value={id}
+                  onChange={(e) => setId(e.target.value)}
+                  required
+                />
+              </div>
+              <div className="mb-4">
+                <label
                   htmlFor="title"
                   className="block text-sm font-medium text-gray-700"
                 >
@@ -91,6 +108,7 @@ const Create = () => {
                   required
                 />
               </div>
+
               <div className="mb-4">
                 <label
                   htmlFor="pin"
