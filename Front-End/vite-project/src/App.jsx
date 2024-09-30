@@ -5,11 +5,13 @@ import Login from "./pages/Login"; // Check if this path is correct
 import Account from "./pages/Account";
 import Create from "./pages/Create";
 import PinPage from "./pages/PinPage";
+import HeroSection from "./pages/Hero";
 
 function App() {
   return (
     <Routes>
       <Route path="/home" element={<Home />} />
+      <Route path="/" element={<HeroSection />} />
       <Route path="/account" element={<Account />} />
       <Route path="/register" element={<Register />} />
       <Route path="/create" element={<Create />} />

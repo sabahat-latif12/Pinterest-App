@@ -2,6 +2,7 @@ import React, { useRef, useState } from "react";
 import { FaPlus } from "react-icons/fa";
 import { PinData } from "../context/pinContext";
 import { useNavigate } from "react-router-dom";
+import NavBar from "../components/Navbar"; // Import the NavBar component
 
 const Create = () => {
   const inputRef = useRef(null);
@@ -20,7 +21,6 @@ const Create = () => {
   const changeFileHandler = (e) => {
     const file = e.target.files[0];
     const reader = new FileReader();
-    console.log("readers", file);
     reader.readAsDataURL(file);
 
     reader.onloadend = () => {
@@ -42,8 +42,12 @@ const Create = () => {
 
     addPin(formData, setFilePrev, setFile, setTitle, setPin, setId, navigate);
   };
+
   return (
     <div>
+      {/* Add the NavBar */}
+      <NavBar />
+
       <div className="flex flex-wrap justify-center items-center gap-2 mt-10">
         <div className="flex items-center justify-center">
           <div className="flex flex-col items-center justify-center w-80 h-auto p-6 bg-white rounded-lg shadow-lg">
@@ -65,7 +69,7 @@ const Create = () => {
               <p className="text-gray-500">Choose a file</p>
             </div>
             <p className="mt-4 text-sm text-gray-400">
-              we recomment using high quality .jpg files but less than 10mb
+              We recommend using high quality .jpg files but less than 10MB
             </p>
           </div>
         </div>

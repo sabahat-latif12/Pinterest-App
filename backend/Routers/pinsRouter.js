@@ -14,9 +14,8 @@ const isAuth = require("../utils/isAuth");
 const router = express.Router();
 //const distPath = path.join(__dirname, "../../Front-End/vite-project/public");
 const storage = multer.diskStorage({
-  destination: "uploads/",
-  filename: function (req, file, cb) {
-    cb(null, file.originalname);
+  destination: function (req, file, cb) {
+    cb(null, "uploads/");
   },
 });
 

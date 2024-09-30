@@ -12,7 +12,7 @@ const Home = ({ user }) => {
     return (
       <>
         <Navbar user={user} />
-        <Loading /> {/* Show loading spinner while data is being fetched */}
+        <Loading />
       </>
     );
   }
@@ -34,7 +34,7 @@ const Home = ({ user }) => {
       <div className="pin-container grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 p-4">
         {pins.length > 0 ? (
           pins.map((pin) => (
-            <div className="m-2 p-2" key={pin.id}>
+            <div className="m-4 p-4" key={pin.id}>
               {" "}
               {/* Add margin and padding here */}
               <PinCard pin={pin} />
