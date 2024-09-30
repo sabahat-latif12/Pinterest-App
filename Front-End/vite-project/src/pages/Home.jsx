@@ -31,17 +31,19 @@ const Home = ({ user }) => {
     <div>
       <Navbar user={user} /> {/* Render Navbar at the top */}
       <h1 className="text-center text-2xl font-bold mt-6">Home</h1>
-      <div className="pin-container grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 p-4">
+      {/* Pin container with responsive grid layout */}
+      <div className="pin-container grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 p-4">
         {pins.length > 0 ? (
           pins.map((pin) => (
-            <div className="m-4 p-4" key={pin.id}>
-              {" "}
-              {/* Add margin and padding here */}
-              <PinCard pin={pin} />
+            <div
+              key={pin.id}
+              className="bg-white shadow-lg rounded-lg overflow-hidden hover:shadow-2xl transition-shadow duration-300"
+            >
+              <PinCard pin={pin} /> {/* Individual pin card */}
             </div>
           ))
         ) : (
-          <p>No pins available</p>
+          <p className="text-center text-gray-600">No pins available</p>
         )}
       </div>
     </div>

@@ -53,11 +53,25 @@ export const UserProvider = ({ children }) => {
       setBtnLoading(false);
     }
   }
+  async function fetchUser() {
+    try {
+      const { data } = await axios.get(
+        "http://localhost:5000/usersRouter/profile"
+      );
 
+      setUser(data);
+      setIsAuth(true);
+      setLoading(false);
+    } catch (error) {
+      console.log(error);
+      setLoading(false);
+    }
+  }
   return (
     <UserContext.Provider
       value={{
         loginUser,
+        fetchUser,
         registerUser, // Expose registerUser in context
         btnLoading,
         isAuth,
