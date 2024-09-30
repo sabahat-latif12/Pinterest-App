@@ -1,5 +1,5 @@
 import React from "react";
-
+import { Link } from "react-router-dom";
 const PinCard = ({ pin }) => {
   return (
     <div className="relative group bg-white shadow-lg rounded-lg overflow-hidden transition-shadow duration-300 hover:shadow-xl">
@@ -20,9 +20,12 @@ const PinCard = ({ pin }) => {
           <p className="text-sm text-gray-200 line-clamp-2 mb-4">
             {pin.description || "No description available."}
           </p>
-          <button className="bg-red-500 text-white py-2 px-4 rounded-md hover:bg-red-600 transition-colors duration-300">
-            View
-          </button>
+          <Link
+            to={`/pinpage/${pin.id}`}
+            className="bg-red-600 hover:bg-red-700 text-white px-4 py-2 rounded-full opacity-0 group-hover:opacity-100 transition-opacity duration-300"
+          >
+            View Pin
+          </Link>
         </div>
       </div>
     </div>

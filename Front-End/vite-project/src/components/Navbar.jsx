@@ -44,7 +44,12 @@ const Navbar = ({ user }) => {
                 <div className="w-8 h-8 rounded-full bg-red-600 flex items-center justify-center text-white font-bold text-lg">
                   P
                 </div>
-                <span className="text-gray-700 font-medium">Profile</span>
+                <span
+                  to={`/account/${user.userId}`}
+                  className="text-gray-700 font-medium"
+                >
+                  Profile
+                </span>
               </Link>
             )}
           </div>

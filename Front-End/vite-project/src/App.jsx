@@ -7,20 +7,53 @@ import Create from "./pages/Create";
 import PinPage from "./pages/PinPage";
 import HeroSection from "./pages/Hero";
 import UserProfile from "./pages/UserProfile";
+import { UserData } from "./context/UserContext";
+import { Loading } from "./components/Loading";
 
 function App() {
+  const { loading, isAuth, user } = UserData();
   return (
     <Routes>
       <Route path="/home" element={<Home />} />
       <Route path="/" element={<HeroSection />} />
-      <Route path="/account" element={<Account />} />
+      <Route path="/account" element={<Account user={user} />} />
       <Route path="/register" element={<Register />} />
       <Route path="/create" element={<Create />} />
-      <Route path="/pinpage" element={<PinPage />} />
+      <Route path="/pinpage" element={<PinPage user={user} />} />
       <Route path="/login" element={<Login />} />
-
-      <Route path="/profile" element={<UserProfile />} />
+      <Route path="/profile" element={<UserProfile user={user} />} />
     </Routes>
+    // <>
+    //   {Loading ? (
+    //     <Loading />
+    //   ) : (
+    //     <BrowserRouter>
+    //       {isAuth && <Navbar user={user} />}
+    //       <Routes>
+    //         <Route path="/" element={<HeroSection />} />
+    //         <Route path="/home" element={isAuth ? <Home /> : <Login />} />
+    //         <Route
+    //           path="/account"
+    //           element={isAuth ? <Account user={user} /> : <Login />}
+    //         />
+    //         <Route
+    //           path="/profile"
+    //           element={isAuth ? <UserProfile user={user} /> : <Login />}
+    //         />
+    //         <Route path="/create" element={isAuth ? <Create /> : <Login />} />
+    //         <Route
+    //           path="/pinpage"
+    //           element={isAuth ? <PinPage user={user} /> : <Login />}
+    //         />
+    //         <Route path="/login" element={isAuth ? <Login /> : <Login />} />
+    //         <Route
+    //           path="/register"
+    //           element={isAuth ? <Home /> : <Register />}
+    //         />
+    //       </Routes>
+    //     </BrowserRouter>
+    //   )}
+    // </>
   );
 }
 

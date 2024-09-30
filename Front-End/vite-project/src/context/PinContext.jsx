@@ -26,10 +26,12 @@ export const PinProvider = ({ children }) => {
   }
 
   // Fetch a specific pin by ID
-  async function fetchPin(id) {
+  async function fetchPin(Id) {
     setLoading(true);
     try {
-      const { data } = await axios.get(`/api/pin/${id}`);
+      const { data } = await axios.get(
+        `http://localhost:5000/pinRouter/:pinid${Id}`
+      );
       setPin(data);
     } catch (error) {
       console.error(error?.response?.data || error.message || "Error occurred");

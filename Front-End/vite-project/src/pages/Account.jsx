@@ -9,7 +9,7 @@ import { PinData } from "../context/pinContext";
 const Account = ({ user }) => {
   const navigate = useNavigate();
   const { setIsAuth, setUser } = UserData();
-
+  console.log("checking user", user);
   const logoutHandler = async () => {
     try {
       const { data } = await axios.get("/api/user/logout");

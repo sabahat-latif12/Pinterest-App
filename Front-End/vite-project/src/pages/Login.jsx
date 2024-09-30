@@ -6,12 +6,24 @@ import Navbarhome from "../components/NavBarhome";
 const Login = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const [error, setError] = useState(""); // State to hold error messages
   const { loginUser, btnLoading } = UserData();
   const navigate = useNavigate();
-  const submitHandler = (e) => {
+
+  const submitHandler = async (e) => {
     e.preventDefault();
-    loginUser(email, password, navigate);
+    setError(""); // Reset error state before submitting
+    if (!email || !password) {
+      setError("Email and password are required.");
+      return;
+    }
+    try {
+      await loginUser(email, password, navigate);
+    } catch (err) {
+      setError("Login failed. Please check your credentials."); // Handle login errors
+    }
   };
+
   return (
     <div
       className="relative bg-cover bg-center h-screen flex flex-col"
@@ -33,6 +45,8 @@ const Login = () => {
             <h2 className="text-2xl font-semibold text-center mb-6">
               Login To see More
             </h2>
+            {error && <p className="text-red-500 text-center mb-4">{error}</p>}{" "}
+            {/* Display error message */}
             <form onSubmit={submitHandler}>
               <div className="mb-4">
                 <label
@@ -47,6 +61,7 @@ const Login = () => {
                   className="common-input"
                   value={email}
                   onChange={(e) => setEmail(e.target.value)}
+                  required // HTML5 validation
                 />
               </div>
               <div className="mb-4">
@@ -62,10 +77,16 @@ const Login = () => {
                   className="common-input"
                   value={password}
                   onChange={(e) => setPassword(e.target.value)}
+                  required // HTML5 validation
                 />
               </div>
-              <button type="submit" className="common-btn">
-                Login
+              <button
+                type="submit"
+                className="common-btn"
+                disabled={btnLoading}
+              >
+                {btnLoading ? "Loading..." : "Login"}{" "}
+                {/* Conditional loading state */}
               </button>
             </form>
             <div className="mt-6 text-center">

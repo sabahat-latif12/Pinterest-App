@@ -5,7 +5,7 @@ import Navbar from "../components/Navbar";
 import { PinData } from "../context/pinContext";
 
 const Home = ({ user }) => {
-  const { pins, loading } = PinData(); // Fetch both pins and loading state
+  const { pins, loading } = PinData() || {}; // Use optional chaining to prevent destructuring from undefined
 
   // Render loading state with the Loading component
   if (loading) {
@@ -17,12 +17,25 @@ const Home = ({ user }) => {
     );
   }
 
+  // Handle cases where PinData might not return an expected structure
   if (!Array.isArray(pins)) {
     console.error("Expected pins to be an array, but got:", pins);
     return (
       <>
         <Navbar user={user} />
-        <p>Loading pins...</p>
+        <p className="text-center text-red-500">
+          Error loading pins. Please try again later.
+        </p>
+      </>
+    );
+  }
+
+  // Check if the pins array is empty
+  if (pins.length === 0) {
+    return (
+      <>
+        <Navbar user={user} />
+        <p className="text-center text-gray-600">No pins available</p>
       </>
     );
   }
@@ -33,18 +46,14 @@ const Home = ({ user }) => {
       <h1 className="text-center text-2xl font-bold mt-6">Home</h1>
       {/* Pin container with responsive grid layout */}
       <div className="pin-container grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 p-4">
-        {pins.length > 0 ? (
-          pins.map((pin) => (
-            <div
-              key={pin.id}
-              className="bg-white shadow-lg rounded-lg overflow-hidden hover:shadow-2xl transition-shadow duration-300"
-            >
-              <PinCard pin={pin} /> {/* Individual pin card */}
-            </div>
-          ))
-        ) : (
-          <p className="text-center text-gray-600">No pins available</p>
-        )}
+        {pins.map((pin) => (
+          <div
+            key={pin.id}
+            className="bg-white shadow-lg rounded-lg overflow-hidden hover:shadow-2xl transition-shadow duration-300"
+          >
+            <PinCard pin={pin} /> {/* Individual pin card */}
+          </div>
+        ))}
       </div>
     </div>
   );
