@@ -3,23 +3,38 @@ import { Link } from "react-router-dom";
 
 const PinCard = ({ pin }) => {
   return (
-    <div className="p-4 w-full sm:w-1/2 md:w-1/3 lg:w-1/4">
-      <div className="bg-white overflow-hidden shadow rounded-lg relative group cursor-pointer">
-        <img
-          src={pin.image.url}
-          alt={pin.title}
-          className="w-full h-full object-cover"
-        />
-        <div className="absolute inset-0 bg-black bg-opacity-0 group-hover:bg-opacity-50 transition-opacity duration-300 flex items-center justify-center">
-          <div className="flex flex-col justify-center items-center gap-2">
-            <Link
-              to={`/pin/${pin._id}`}
-              className="bg-red-600 hover:bg-red-700 text-white px-4 py-2 rounded-full opacity-0 group-hover:opacity-100 transition-opacity duration-300"
-            >
-              View Pin
-            </Link>
+    <div className="relative flex flex-col bg-white shadow-lg border border-slate-200 rounded-lg w-full sm:w-96 p-4 hover:shadow-2xl transition-shadow duration-300 ease-in-out">
+      {/* Card with smooth shadow transition */}
+      <div className="relative h-56 overflow-hidden text-white rounded-md mb-4">
+        {pin.imageUrl ? (
+          <img
+            src={pin.imageUrl}
+            alt={pin.title}
+            className="w-full h-full object-cover"
+          />
+        ) : (
+          <div className="flex items-center justify-center w-full h-full bg-gray-200">
+            <p className="text-gray-500">No Image Available</p>
           </div>
-        </div>
+        )}
+      </div>
+
+      <div className="flex flex-col justify-between flex-grow">
+        <h6 className="mb-2 text-slate-800 text-xl font-semibold">
+          {pin.title || "Untitled"}
+        </h6>
+        <p className="text-slate-600 leading-normal font-light">
+          {pin.description || "No description available."}
+        </p>
+      </div>
+
+      <div className="mt-4">
+        <button
+          className="w-full rounded-md bg-red-600 py-2 px-4 border border-transparent text-center text-sm text-white transition-all shadow-md hover:shadow-lg hover:bg-red-500 focus:bg-slate-700 focus:shadow-none active:bg-slate-700 active:shadow-none disabled:pointer-events-none disabled:opacity-50 disabled:shadow-none"
+          type="button"
+        >
+          Update
+        </button>
       </div>
     </div>
   );

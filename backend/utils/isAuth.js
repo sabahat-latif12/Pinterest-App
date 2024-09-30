@@ -4,6 +4,7 @@ const middleware = (req, res, next) => {
   try {
     // console.log(req.cookies); //when getting cookies that plural when creating then singular i-e res.cookie
     const { auth } = req.cookies;
+    console.log("auth", auth);
     if (auth === "undefined") {
       return res.send({ error: "Unauthorized" });
     }

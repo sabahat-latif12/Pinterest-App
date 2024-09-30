@@ -14,7 +14,7 @@ export const PinProvider = ({ children }) => {
   async function fetchPins() {
     try {
       const { data } = await axios.get(
-        "http://localhost:5000/pinRoutes/get-User-Pins"
+        "http://localhost:5000/pinRoutes/getAll"
       );
       console.log("Fetched pins:", data); // Log the data to inspect it
       setPins(data); // Ensure this is an array
@@ -57,21 +57,27 @@ export const PinProvider = ({ children }) => {
     setFile,
     setTitle,
     setPin,
+    setId,
     navigate
   ) {
     try {
-      const localStorage = localStorage.getItem("token");
+      console.log("formdata", formData);
+      axios.defaults.withCredentials = true;
+      //  const localStorage = localStorage.getItem("token");
       const { data } = await axios.post(
         "http://localhost:5000/pinRoutes/post",
-        { formData, localStorage }
+        formData
       );
+      console.log(data);
       toast.success(data.message);
+
       setFile([]);
       setFilePrev("");
       setPin("");
+      setId("");
       setTitle("");
       fetchPins();
-      navigate("/");
+      navigate("/home");
     } catch (error) {
       toast.error(error?.response?.data.message || "Error adding pin");
     }

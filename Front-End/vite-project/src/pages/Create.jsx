@@ -20,7 +20,7 @@ const Create = () => {
   const changeFileHandler = (e) => {
     const file = e.target.files[0];
     const reader = new FileReader();
-
+    console.log("readers", file);
     reader.readAsDataURL(file);
 
     reader.onloadend = () => {
@@ -38,7 +38,7 @@ const Create = () => {
     formData.append("id", id);
     formData.append("title", title);
     formData.append("pin", pin);
-    formData.append("file", file);
+    formData.append("imageUrl", file);
 
     addPin(formData, setFilePrev, setFile, setTitle, setPin, setId, navigate);
   };

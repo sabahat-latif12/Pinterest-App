@@ -1,6 +1,7 @@
 import { createContext, useContext, useEffect, useState } from "react";
 import toast, { Toaster } from "react-hot-toast";
 import axios from "axios";
+import cookies from "js-cookie";
 
 const UserContext = createContext();
 
@@ -21,7 +22,8 @@ export const UserProvider = ({ children }) => {
         }
       );
       console.log(data.response);
-      localStorage.setItem("token", data.response);
+      cookies.set("auth", data.response);
+
       toast.success(data.message);
       setUser(data.user);
       setIsAuth(true);

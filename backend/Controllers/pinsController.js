@@ -1,4 +1,4 @@
-const Pins = require("../Models/definitions/pins");
+const pins = require("../Models/definitions/pins");
 const Users = require("../Models/definitions/users");
 const { v4: uuid } = require("uuid");
 
@@ -7,11 +7,15 @@ module.exports = {
   // Create a new pin
   createPin: async (req, res) => {
     try {
-      const pin = await Pins.create({
+      console.log("req.body", req.body);
+      console.log("req.user", req.user);
+
+      const pin = await pins.create({
         id: req.body.id,
         title: req.body.title,
         description: req.body.description,
-        imageUrl: req.file.path, // Store the path to the uploaded image
+        imageUrl: `http://localhost:5000/uploads/${req.file.filename}`,
+        // Store the path to the uploaded image
         userId: req.user.userId,
       });
       res.status(201).json(pin);
@@ -21,7 +25,7 @@ module.exports = {
   },
   updatePin: async (req, res) => {
     try {
-      const pin = await Pins.findByPk(req.params.id);
+      const pin = await pins.findByPk(req.params.id);
       if (!pin) {
         return res.status(404).json({ error: "Pin not found" });
       }
@@ -39,7 +43,7 @@ module.exports = {
   },
   deletePin: async (req, res) => {
     try {
-      const pin = await Pins.findByPk(req.params.id);
+      const pin = await pins.findByPk(req.params.id);
       if (!pin) {
         return res.status(404).json({ error: "Pin not found" });
       }
@@ -51,7 +55,7 @@ module.exports = {
   },
   getPinById: async (req, res) => {
     try {
-      const pin = await Pins.findByPk(req.params.id);
+      const pin = await pins.findByPk(req.params.id);
       if (!pin) {
         return res.status(404).json({ error: "Pin not found" });
       }
@@ -62,10 +66,11 @@ module.exports = {
   },
   getAllPins: async (req, res) => {
     try {
-      const pins = await Pins.findAll();
-      res.status(200).json(pins);
+      const allPins = await pins.findAll();
+      console.log("pins", allPins);
+      res.status(200).json(allPins);
     } catch (err) {
-      res.status(500).json({ error: "Failed to fetch pins" });
+      res.status(500).json({ error: err });
     }
   },
 };

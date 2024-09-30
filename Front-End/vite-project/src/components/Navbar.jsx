@@ -16,7 +16,7 @@ const Navbar = ({ user }) => {
           </Link>
 
           <div className="flex items-center space-x-4 w-[200px]">
-            <Link to="/" className="text-gray-700 hover:text-gray-900">
+            <Link to="/home" className="text-gray-700 hover:text-gray-900">
               Home
             </Link>
             <Link to="/create" className="text-gray-700 hover:text-gray-900">
