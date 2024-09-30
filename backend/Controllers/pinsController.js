@@ -73,4 +73,5 @@ module.exports = {
       res.status(500).json({ error: err });
     }
   },
+  // Fetch a pin by its ID
 };

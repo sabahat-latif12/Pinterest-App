@@ -27,7 +27,7 @@ const Account = ({ user }) => {
   let userPins = [];
 
   if (pins && Array.isArray(pins)) {
-    userPins = pins.filter((pin) => pin.owner === user?._id);
+    userPins = pins.filter((pin) => pin.owner === user?.userId);
   }
 
   // Check if user data is available
@@ -64,7 +64,7 @@ const Account = ({ user }) => {
 
           <div className="mt-4 flex flex-wrap justify-center gap-4">
             {userPins.length > 0 ? (
-              userPins.map((e) => <PinCard key={e._id} pin={e} />)
+              userPins.map((e) => <PinCard key={e.id} pin={e} />)
             ) : (
               <p>No Pins Yet</p>
             )}

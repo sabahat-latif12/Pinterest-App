@@ -7,7 +7,7 @@ const storage = new CloudinaryStorage({
   params: {
     folder: "pins", // Folder name in Cloudinary where images will be stored
     format: async (req, file) => "png", // File format
-    public_id: (req, file) => file.originalname,
+    publicid: (req, file) => file.originalname,
   },
 });
 

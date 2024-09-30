@@ -24,7 +24,7 @@ const upload = multer({ storage: storage });
 // Create a Pin
 router.post("/post", upload.single("imageUrl"), isAuth, createPin);
 router.get("/getall", getAllPins);
-router.get("/:id", getPinById);
+router.get("/:pinid", getPinById);
 router.put("/:id", upload.single("imageUrl"), updatePin);
 router.delete("/:id", deletePin);
 

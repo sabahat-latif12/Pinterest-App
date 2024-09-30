@@ -1,6 +1,6 @@
 import React from "react";
 import PinCard from "../components/pinCard";
-import { Loading, LoadingAnimation } from "../components/Loading"; // Import Loading component
+import { Loading } from "../components/Loading"; // Import Loading component
 import Navbar from "../components/Navbar";
 import { PinData } from "../context/pinContext";
 

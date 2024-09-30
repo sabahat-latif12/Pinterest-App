@@ -6,6 +6,7 @@ import Account from "./pages/Account";
 import Create from "./pages/Create";
 import PinPage from "./pages/PinPage";
 import HeroSection from "./pages/Hero";
+import UserProfile from "./pages/UserProfile";
 
 function App() {
   return (
@@ -17,6 +18,8 @@ function App() {
       <Route path="/create" element={<Create />} />
       <Route path="/pinpage" element={<PinPage />} />
       <Route path="/login" element={<Login />} />
+
+      <Route path="/profile" element={<UserProfile />} />
     </Routes>
   );
 }

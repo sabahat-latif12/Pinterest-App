@@ -58,7 +58,7 @@ export const UserProvider = ({ children }) => {
       const { data } = await axios.get(
         "http://localhost:5000/usersRouter/profile"
       );
-
+      console.log(data);
       setUser(data);
       setIsAuth(true);
       setLoading(false);
@@ -72,7 +72,7 @@ export const UserProvider = ({ children }) => {
       value={{
         loginUser,
         fetchUser,
-        registerUser, // Expose registerUser in context
+        registerUser,
         btnLoading,
         isAuth,
         user,
