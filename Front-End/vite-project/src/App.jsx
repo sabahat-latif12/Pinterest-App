@@ -19,7 +19,7 @@ function App() {
       <Route path="/account" element={<Account user={user} />} />
       <Route path="/register" element={<Register />} />
       <Route path="/create" element={<Create />} />
-      <Route path="/pinpage" element={<PinPage user={user} />} />
+      <Route path="/pin/:id" element={<PinPage />} />
       <Route path="/login" element={<Login />} />
       <Route path="/profile" element={<UserProfile user={user} />} />
     </Routes>

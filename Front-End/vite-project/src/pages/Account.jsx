@@ -12,7 +12,7 @@ const Account = ({ user }) => {
   console.log("checking user", user);
   const logoutHandler = async () => {
     try {
-      const { data } = await axios.get("/api/user/logout");
+      const { data } = await axios.get("/localhost:5000/usersRouter/logout");
       toast.success(data.message);
       navigate("/login");
       setIsAuth(false);

@@ -45,7 +45,7 @@ const Navbar = ({ user }) => {
                   P
                 </div>
                 <span
-                  to={`/account/${user.userId}`}
+                  // to={`/account/${user.userId}`}
                   className="text-gray-700 font-medium"
                 >
                   Profile

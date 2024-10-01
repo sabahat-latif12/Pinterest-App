@@ -1,12 +1,11 @@
 import React from "react";
 import { Link } from "react-router-dom";
+
 const PinCard = ({ pin }) => {
   return (
     <div className="relative group bg-white shadow-lg rounded-lg overflow-hidden transition-shadow duration-300 hover:shadow-xl">
       {/* Pin Image */}
       <div className="relative h-96 overflow-hidden">
-        {" "}
-        {/* Increased height to 96 (24rem) */}
         <img
           src={pin.imageUrl}
           alt={pin.title}
@@ -21,7 +20,7 @@ const PinCard = ({ pin }) => {
             {pin.description || "No description available."}
           </p>
           <Link
-            to={`/pinpage/${pin.id}`}
+            to={`/pin/${pin.id}`}
             className="bg-red-600 hover:bg-red-700 text-white px-4 py-2 rounded-full opacity-0 group-hover:opacity-100 transition-opacity duration-300"
           >
             View Pin
