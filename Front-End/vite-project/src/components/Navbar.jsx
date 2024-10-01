@@ -3,6 +3,7 @@ import { Link } from "react-router-dom";
 import { FaPlus } from "react-icons/fa"; // You can import additional icons as needed
 
 const Navbar = ({ user }) => {
+  console.log("userin Nav", user);
   return (
     <div>
       <div className="bg-white shadow-sm">
@@ -30,7 +31,10 @@ const Navbar = ({ user }) => {
           {/* Right Section with User Profile */}
           <div className="flex items-center">
             {user ? (
-              <Link to="/account" className="flex items-center space-x-2">
+              <Link
+                to={`/account/${user.userId}`}
+                className="flex items-center space-x-2"
+              >
                 {/* Circle with Initial from Email */}
                 <div className="w-8 h-8 rounded-full bg-red-600 flex items-center justify-center text-xl text-white">
                   {user.email.slice(0, 1)}{" "}
@@ -44,12 +48,7 @@ const Navbar = ({ user }) => {
                 <div className="w-8 h-8 rounded-full bg-red-600 flex items-center justify-center text-white font-bold text-lg">
                   P
                 </div>
-                <span
-                  // to={`/account/${user.userId}`}
-                  className="text-gray-700 font-medium"
-                >
-                  Profile
-                </span>
+                <span className="text-gray-700 font-medium">Profile</span>
               </Link>
             )}
           </div>

@@ -6,7 +6,7 @@ import { PinData } from "../context/pinContext";
 
 const Home = ({ user }) => {
   const { pins, loading } = PinData() || {}; // Use optional chaining to prevent destructuring from undefined
-
+  console.log("user", user);
   // Render loading state with the Loading component
   if (loading) {
     return (

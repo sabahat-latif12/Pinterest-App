@@ -2,11 +2,13 @@ import React, { useEffect } from "react";
 import PinCard from "../components/pinCard";
 import toast from "react-hot-toast";
 import axios from "axios";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import { UserData } from "../context/UserContext";
 import { PinData } from "../context/pinContext";
 
 const Account = ({ user }) => {
+  const params = useParams();
+  console.log("prams", params);
   const navigate = useNavigate();
   const { setIsAuth, setUser } = UserData();
   console.log("checking user", user);

@@ -7,8 +7,7 @@ import { FaEdit } from "react-icons/fa";
 
 const PinPage = ({ user }) => {
   const params = useParams();
-  const { loading, fetchPin, pin, updatePin, deletePin } = PinData(); // Removed comment-related functions
-
+  const { loading, fetchPin, pin, updatePin, deletePin } = PinData();
   const [edit, setEdit] = useState(false);
   const [title, setTitle] = useState("");
   const [pinValue, setPinValue] = useState("");
@@ -43,9 +42,9 @@ const PinPage = ({ user }) => {
           <div className="bg-white rounded-lg shadow-lg flex flex-wrap w-full max-w-4xl">
             {/* Pin Image Section */}
             <div className="w-full md:w-1/2 bg-gray-200 rounded-t-lg md:rounded-l-lg md:rounded-t-none flex items-center justify-center">
-              {pin.image && (
+              {pin.imageUrl && (
                 <img
-                  src={pin.image.url}
+                  src={pin.imageUrl}
                   alt="Pin"
                   className="object-cover w-full rounded-t-lg md:rounded-l-lg md:rounded-t-none"
                 />

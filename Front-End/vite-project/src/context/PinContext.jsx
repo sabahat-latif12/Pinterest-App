@@ -17,7 +17,7 @@ export const PinProvider = ({ children }) => {
       const { data } = await axios.get(
         "http://localhost:5000/pinRoutes/getAll"
       );
-      console.log("Fetched pins:", data); // Log the data to inspect it
+
       setPins(data); // Ensure this is an array
     } catch (error) {
       console.error(error?.response?.data || error.message || "Error occurred");
@@ -34,6 +34,7 @@ export const PinProvider = ({ children }) => {
 
       // Correct the endpoint to your server's API path
       const response = await axios.get(`http://localhost:5000/pinRoutes/${id}`);
+      console.log("response", response);
       setPin(response.data);
     } catch (err) {
       setError(err.message);

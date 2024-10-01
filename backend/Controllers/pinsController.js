@@ -55,7 +55,8 @@ module.exports = {
   },
   getPinById: async (req, res) => {
     try {
-      const pin = await pins.findByPk(req.params.id);
+      console.log("req", req.params);
+      const pin = await pins.findByPk(req.params.pinid);
       if (!pin) {
         return res.status(404).json({ error: "Pin not found" });
       }

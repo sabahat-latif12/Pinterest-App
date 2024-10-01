@@ -26,6 +26,7 @@ export const UserProvider = ({ children }) => {
 
       toast.success(data.message);
       setUser(data.user);
+      console.log("userrrr", user);
       setIsAuth(true);
       setBtnLoading(false);
       navigate("/home"); // Redirect to home on successful login
@@ -53,12 +54,13 @@ export const UserProvider = ({ children }) => {
       setBtnLoading(false);
     }
   }
-  async function fetchUser() {
+  async function fetchUser(userId) {
     try {
+      console.log("userContext", user);
       const { data } = await axios.get(
-        "http://localhost:5000/usersRouter/profile"
+        `http://localhost:5000/usersRouter/profile?userId=${userId}`
       );
-      console.log(data);
+      console.log("fetchuser data", data);
       setUser(data);
       setIsAuth(true);
       setLoading(false);

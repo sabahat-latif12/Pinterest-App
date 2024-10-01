@@ -1,4 +1,5 @@
 // const users = require("../Models/definitions/users");
+
 const { models } = require("../Models/index");
 const {
   createUser,
@@ -51,10 +52,13 @@ module.exports = {
       }
       // now add token if user exists
       const user = isUser.response.dataValues;
+
       delete user.password;
       const token = sign(user, process.env.JWT_SEC, {
         expiresIn: "5d",
       });
+      localStorage.setItem("userId", user.userId);
+      console.log("user", user);
       res.cookie("auth", token); //generating cookie
       return responseHandler({ response: token }, res);
     } catch (error) {

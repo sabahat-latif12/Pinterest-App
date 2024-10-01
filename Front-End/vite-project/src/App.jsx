@@ -12,16 +12,17 @@ import { Loading } from "./components/Loading";
 
 function App() {
   const { loading, isAuth, user } = UserData();
+  console.log("suserin app", user);
   return (
     <Routes>
-      <Route path="/home" element={<Home />} />
+      <Route path="/home" element={<Home user={user} />} />
       <Route path="/" element={<HeroSection />} />
       <Route path="/account" element={<Account user={user} />} />
       <Route path="/register" element={<Register />} />
       <Route path="/create" element={<Create />} />
       <Route path="/pin/:id" element={<PinPage />} />
       <Route path="/login" element={<Login />} />
-      <Route path="/profile" element={<UserProfile user={user} />} />
+      {/* //  <Route path="/profile" element={<UserProfile user={user} />} /> */}
     </Routes>
     // <>
     //   {Loading ? (
